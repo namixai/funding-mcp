@@ -1,0 +1,50 @@
+{
+  "name": "@usenami/funding-mcp",
+  "version": "0.1.0",
+  "description": "MCP server for multi-venue perpetual funding-rate data & cross-exchange funding arbitrage across 20+ exchanges (incl. HIP-3 sub-DEXes). Free screener + paid x402 endpoints.",
+  "type": "module",
+  "bin": {
+    "funding-mcp": "dist/index.js"
+  },
+  "main": "dist/index.js",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build",
+    "start": "node dist/index.js",
+    "dev": "tsx src/index.ts"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "funding-rate",
+    "perpetuals",
+    "perp",
+    "crypto",
+    "arbitrage",
+    "funding-arbitrage",
+    "x402",
+    "trading",
+    "market-data",
+    "hyperliquid"
+  ],
+  "author": "Usenami",
+  "license": "MIT",
+  "homepage": "https://usenami.io",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/namixai/funding-mcp.git"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.9.3",
+    "tsx": "^4.7.0",
+    "typescript": "^5.4.0"
+  }
+}
