@@ -1,0 +1,50 @@
+{
+  "$schema": "https://registry.modelcontextprotocol.io/schemas/server.json",
+  "name": "@usenami/funding-mcp",
+  "version": "0.1.0",
+  "description": "Multi-venue perpetual funding-rate data and cross-exchange funding arbitrage across 20+ exchanges (incl. HIP-3 sub-DEXes). Free screener + paid x402 endpoints.",
+  "homepage": "https://usenami.io",
+  "license": "MIT",
+  "tags": [
+    "funding-rate",
+    "perpetuals",
+    "perp",
+    "crypto",
+    "arbitrage",
+    "funding-arbitrage",
+    "market-data",
+    "x402",
+    "hyperliquid",
+    "trading",
+    "ai-agents"
+  ],
+  "categories": ["finance", "trading"],
+  "transport": {
+    "type": "stdio",
+    "command": "npx",
+    "args": ["-y", "@usenami/funding-mcp"]
+  },
+  "env_schema": {
+    "USENAMI_API_BASE": {
+      "description": "Override the Usenami API base URL (default: https://api.usenami.io)",
+      "required": false
+    }
+  },
+  "tools": [
+    {
+      "name": "funding_screener",
+      "description": "FREE preview of current cross-venue perpetual funding rates across 20+ exchanges.",
+      "readOnly": true
+    },
+    {
+      "name": "funding_arb",
+      "description": "Cross-exchange funding-rate arbitrage opportunities (ranked long/short venue pairs). Paid via x402 (~$0.003).",
+      "readOnly": true
+    },
+    {
+      "name": "funding_spread",
+      "description": "Current funding-rate spread for one symbol across all venues. Paid via x402 (~$0.001).",
+      "readOnly": true
+    }
+  ]
+}
