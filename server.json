@@ -1,7 +1,7 @@
 {
   "$schema": "https://registry.modelcontextprotocol.io/schemas/server.json",
   "name": "@usenami/funding-mcp",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Multi-venue perpetual funding-rate data and cross-exchange funding arbitrage across 20+ exchanges (incl. HIP-3 sub-DEXes). Free screener + paid x402 endpoints.",
   "homepage": "https://usenami.io",
   "license": "MIT",
@@ -28,6 +28,11 @@
     "USENAMI_API_BASE": {
       "description": "Override the Usenami API base URL (default: https://api.usenami.io)",
       "required": false
+    },
+    "X402_PRIVATE_KEY": {
+      "description": "Base wallet private key (0x...) holding USDC. If set, paid tools auto-pay via x402; otherwise they return payment requirements.",
+      "required": false,
+      "secret": true
     }
   },
   "tools": [

@@ -12,7 +12,7 @@ Gives any MCP-capable AI agent a named, schema'd way to find where perpetual fun
 | `funding_arb` | Ranked cross-exchange funding-arbitrage pairs (flagship) | ~$0.003 via x402 |
 | `funding_spread` | Per-symbol funding spread across all venues | ~$0.001 via x402 |
 
-Paid tools settle in USDC on Base via the [x402 protocol](https://x402.org). If your client has an x402 wallet (e.g. Coinbase `payments-mcp` or `x402-fetch`) it pays automatically; otherwise the tool returns the payment requirements so your agent can pay and retry. `funding_screener` is free and needs no wallet.
+Paid tools settle in USDC on Base via the [x402 protocol](https://x402.org). Set `X402_PRIVATE_KEY` (a Base wallet holding USDC) and the paid tools **auto-pay** and return data; without it they return the x402 payment requirements so any x402-capable client can pay and retry. `funding_screener` is free and needs no wallet.
 
 ## Install
 
@@ -28,7 +28,7 @@ Paid tools settle in USDC on Base via the [x402 protocol](https://x402.org). If 
 }
 ```
 
-Optional env: `USENAMI_API_BASE` (defaults to `https://api.usenami.io`).
+Optional env: `USENAMI_API_BASE` (default `https://api.usenami.io`); `X402_PRIVATE_KEY` (Base wallet `0x…` with USDC — enables built-in auto-pay for the paid tools).
 
 ## Why
 
