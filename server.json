@@ -1,8 +1,8 @@
 {
   "$schema": "https://registry.modelcontextprotocol.io/schemas/server.json",
   "name": "@usenami/funding-mcp",
-  "version": "0.2.0",
-  "description": "Multi-venue perpetual funding-rate data and cross-exchange funding arbitrage across 20+ exchanges (incl. HIP-3 sub-DEXes). Free screener + paid x402 endpoints.",
+  "version": "0.3.0",
+  "description": "Multi-venue perpetual + HIP-3 market data for AI agents: funding rates & cross-exchange arbitrage, liquidity/slippage, open interest, volume anomalies, oracle families, and Hyperliquid HIP-3 RWA coverage (stocks/metals/oil). Free screener + paid x402 endpoints.",
   "homepage": "https://usenami.io",
   "license": "MIT",
   "tags": [
@@ -11,10 +11,13 @@
     "perp",
     "crypto",
     "arbitrage",
-    "funding-arbitrage",
     "market-data",
-    "x402",
+    "liquidity",
+    "open-interest",
+    "rwa",
     "hyperliquid",
+    "hip-3",
+    "x402",
     "trading",
     "ai-agents"
   ],
@@ -36,20 +39,16 @@
     }
   },
   "tools": [
-    {
-      "name": "funding_screener",
-      "description": "FREE preview of current cross-venue perpetual funding rates across 20+ exchanges.",
-      "readOnly": true
-    },
-    {
-      "name": "funding_arb",
-      "description": "Cross-exchange funding-rate arbitrage opportunities (ranked long/short venue pairs). Paid via x402 (~$0.003).",
-      "readOnly": true
-    },
-    {
-      "name": "funding_spread",
-      "description": "Current funding-rate spread for one symbol across all venues. Paid via x402 (~$0.001).",
-      "readOnly": true
-    }
+    { "name": "funding_screener", "description": "FREE preview of current cross-venue perpetual funding rates across 20+ exchanges.", "readOnly": true },
+    { "name": "funding_arb", "description": "Cross-exchange funding-rate arbitrage candidates (ranked long/short venue pairs). Paid x402 ~$0.003.", "readOnly": true },
+    { "name": "funding_spread", "description": "Per-symbol funding-rate spread across all venues. Paid x402 ~$0.001.", "readOnly": true },
+    { "name": "funding_history", "description": "Historical funding rates for a symbol across venues. Paid x402 ~$0.005.", "readOnly": true },
+    { "name": "orderbook_slippage", "description": "Multi-venue execution cost / slippage for a trade size. Paid x402 ~$0.005.", "readOnly": true },
+    { "name": "open_interest", "description": "Current open interest for a ticker on a venue. Paid x402 ~$0.001.", "readOnly": true },
+    { "name": "oi_delta", "description": "Open-interest change over a lookback window (positioning shifts). Paid x402 ~$0.003.", "readOnly": true },
+    { "name": "volume_24h", "description": "24h perpetual volume for a ticker on a venue. Paid x402 ~$0.001.", "readOnly": true },
+    { "name": "volume_anomalies", "description": "Tickers with anomalous volume spikes across venues. Paid x402 ~$0.003.", "readOnly": true },
+    { "name": "oracle_families", "description": "Oracle-family grouping across venues (basis-risk map). Paid x402 ~$0.001.", "readOnly": true },
+    { "name": "rwa_coverage", "description": "Hyperliquid HIP-3 RWA perp coverage (stocks/metals/oil/forex/indices/pre-IPO). Paid x402 ~$0.001.", "readOnly": true }
   ]
 }

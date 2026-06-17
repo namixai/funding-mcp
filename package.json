@@ -1,6 +1,6 @@
 {
   "name": "@usenami/funding-mcp",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "MCP server for multi-venue perpetual funding-rate data & cross-exchange funding arbitrage across 20+ exchanges (incl. HIP-3 sub-DEXes). Free screener + paid x402 endpoints.",
   "type": "module",
   "bin": {
