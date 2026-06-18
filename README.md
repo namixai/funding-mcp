@@ -10,6 +10,7 @@ Gives any MCP-capable AI agent a named, schema'd surface for funding, liquidity,
 |------|--------------|------|
 | `funding_screener` | Current cross-venue funding rates (preview) | **Free** |
 | `funding_arb` | Ranked cross-exchange funding-arb candidates | ~$0.003 |
+| `funding_signal` | **Decision-ready** funding-arb signal: net-of-fees + breakeven + depth-sized max notional + liquidity flag | ~$0.025 |
 | `funding_spread` | Per-symbol funding spread across venues | ~$0.001 |
 | `funding_history` | Historical funding rates (backtesting) | ~$0.005 |
 | `orderbook_slippage` | Multi-venue execution cost / slippage | ~$0.005 |
@@ -38,6 +39,10 @@ Paid tools settle in USDC on Base via the [x402 protocol](https://x402.org). Set
 ```
 
 Optional env: `USENAMI_API_BASE` (default `https://api.usenami.io`); `X402_PRIVATE_KEY` (Base wallet `0x…` with USDC — enables built-in auto-pay for the paid tools).
+
+## Support
+
+Hit a problem or want data we don't cover yet? **Report issues / request data:** [support@usenami.io](mailto:support@usenami.io) · Partnerships: [business@usenami.io](mailto:business@usenami.io) · Telegram: [@USnami](https://t.me/USnami).
 
 ## Local dev
 

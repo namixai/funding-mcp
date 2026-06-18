@@ -92,7 +92,7 @@ async function paid(path: string, price: string) {
   return asText(r.data);
 }
 
-const server = new McpServer({ name: "usenami-funding-mcp", version: "0.3.0" });
+const server = new McpServer({ name: "usenami-funding-mcp", version: "0.4.0" });
 
 // ── FREE ──────────────────────────────────────────────────────────────────
 server.tool(
@@ -117,6 +117,19 @@ server.tool(
     limit: z.number().optional().describe("Max rows returned"),
   },
   async ({ min_diff, limit }) => paid(`/v1/perp/arbitrage/funding${qs({ min_diff, limit })}`, "$0.003")
+);
+
+server.tool(
+  "funding_signal",
+  "DECISION-READY funding-arb SIGNAL — the 'sell-the-outcome' upgrade over funding_arb. Ranked " +
+    "opportunities NET of public round-trip taker fees, with funding-periods-to-breakeven, a depth-sized " +
+    "max notional ($1k/$5k/$10k from real order-book depth) and a liquidity flag (deep/moderate/thin/below_1k). " +
+    "Computed facts, NOT a profit forecast. PAID ~$0.025 via x402.",
+  {
+    min_diff: z.number().optional().describe("Minimum funding-rate diff to include (API default if omitted)"),
+    limit: z.number().optional().describe("Max rows returned"),
+  },
+  async ({ min_diff, limit }) => paid(`/v1/perp/arbitrage/funding-signal${qs({ min_diff, limit })}`, "$0.025")
 );
 
 server.tool(
@@ -208,4 +221,4 @@ server.tool(
 
 const transport = new StdioServerTransport();
 await server.connect(transport);
-console.error(`usenami-funding-mcp v0.3.0 on stdio (API: ${BASE}, x402 auto-pay: ${HAS_KEY ? "on" : "off"})`);
+console.error(`usenami-funding-mcp v0.4.0 on stdio (API: ${BASE}, x402 auto-pay: ${HAS_KEY ? "on" : "off"})`);
