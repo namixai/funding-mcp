@@ -10,6 +10,7 @@
  * return data; without it they return the x402 payment requirements so any
  * x402-capable client can pay and retry. The free screener needs no wallet.
  */
+import { createRequire } from "node:module";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
@@ -92,7 +93,13 @@ async function paid(path: string, price: string) {
   return asText(r.data);
 }
 
-const server = new McpServer({ name: "usenami-funding-mcp", version: "0.4.0" });
+// Single source of truth for the version. It used to be typed here and again in the
+// startup banner, and both drifted from package.json the moment the version changed —
+// caught in review on the 0.4.1 bump. The MCP handshake reports this to the client, so
+// a stale literal is not cosmetic.
+const PKG_VERSION: string = (createRequire(import.meta.url)("../package.json") as { version: string }).version;
+
+const server = new McpServer({ name: "usenami-funding-mcp", version: PKG_VERSION });
 
 // ── FREE ──────────────────────────────────────────────────────────────────
 server.tool(
@@ -221,4 +228,4 @@ server.tool(
 
 const transport = new StdioServerTransport();
 await server.connect(transport);
-console.error(`usenami-funding-mcp v0.4.0 on stdio (API: ${BASE}, x402 auto-pay: ${HAS_KEY ? "on" : "off"})`);
+console.error(`usenami-funding-mcp v${PKG_VERSION} on stdio (API: ${BASE}, x402 auto-pay: ${HAS_KEY ? "on" : "off"})`);

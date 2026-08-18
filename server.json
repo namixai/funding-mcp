@@ -1,54 +1,36 @@
 {
-  "$schema": "https://registry.modelcontextprotocol.io/schemas/server.json",
-  "name": "@usenami/funding-mcp",
-  "version": "0.3.0",
-  "description": "Multi-venue perpetual + HIP-3 market data for AI agents: funding rates & cross-exchange arbitrage, liquidity/slippage, open interest, volume anomalies, oracle families, and Hyperliquid HIP-3 RWA coverage (stocks/metals/oil). Free screener + paid x402 endpoints.",
-  "homepage": "https://usenami.io",
-  "license": "MIT",
-  "tags": [
-    "funding-rate",
-    "perpetuals",
-    "perp",
-    "crypto",
-    "arbitrage",
-    "market-data",
-    "liquidity",
-    "open-interest",
-    "rwa",
-    "hyperliquid",
-    "hip-3",
-    "x402",
-    "trading",
-    "ai-agents"
-  ],
-  "categories": ["finance", "trading"],
-  "transport": {
-    "type": "stdio",
-    "command": "npx",
-    "args": ["-y", "@usenami/funding-mcp"]
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.namixai/funding-mcp",
+  "title": "Usenami Funding MCP",
+  "description": "Multi-venue perp funding rates, arbitrage spreads, open interest and slippage for agents.",
+  "version": "0.4.1",
+  "websiteUrl": "https://usenami.io",
+  "repository": {
+    "url": "https://github.com/namixai/funding-mcp",
+    "source": "github"
   },
-  "env_schema": {
-    "USENAMI_API_BASE": {
-      "description": "Override the Usenami API base URL (default: https://api.usenami.io)",
-      "required": false
-    },
-    "X402_PRIVATE_KEY": {
-      "description": "Base wallet private key (0x...) holding USDC. If set, paid tools auto-pay via x402; otherwise they return payment requirements.",
-      "required": false,
-      "secret": true
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "@usenami/funding-mcp",
+      "version": "0.4.1",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "USENAMI_API_BASE",
+          "description": "Override the Usenami API base URL (default: https://api.usenami.io)",
+          "isRequired": false
+        },
+        {
+          "name": "X402_PRIVATE_KEY",
+          "description": "Base wallet private key holding USDC. Set it and the paid tools auto-pay via x402; leave it unset and they return the payment requirements instead.",
+          "isRequired": false,
+          "isSecret": true
+        }
+      ]
     }
-  },
-  "tools": [
-    { "name": "funding_screener", "description": "FREE preview of current cross-venue perpetual funding rates across 20+ exchanges.", "readOnly": true },
-    { "name": "funding_arb", "description": "Cross-exchange funding-rate arbitrage candidates (ranked long/short venue pairs). Paid x402 ~$0.003.", "readOnly": true },
-    { "name": "funding_spread", "description": "Per-symbol funding-rate spread across all venues. Paid x402 ~$0.001.", "readOnly": true },
-    { "name": "funding_history", "description": "Historical funding rates for a symbol across venues. Paid x402 ~$0.005.", "readOnly": true },
-    { "name": "orderbook_slippage", "description": "Multi-venue execution cost / slippage for a trade size. Paid x402 ~$0.005.", "readOnly": true },
-    { "name": "open_interest", "description": "Current open interest for a ticker on a venue. Paid x402 ~$0.001.", "readOnly": true },
-    { "name": "oi_delta", "description": "Open-interest change over a lookback window (positioning shifts). Paid x402 ~$0.003.", "readOnly": true },
-    { "name": "volume_24h", "description": "24h perpetual volume for a ticker on a venue. Paid x402 ~$0.001.", "readOnly": true },
-    { "name": "volume_anomalies", "description": "Tickers with anomalous volume spikes across venues. Paid x402 ~$0.003.", "readOnly": true },
-    { "name": "oracle_families", "description": "Oracle-family grouping across venues (basis-risk map). Paid x402 ~$0.001.", "readOnly": true },
-    { "name": "rwa_coverage", "description": "Hyperliquid HIP-3 RWA perp coverage (stocks/metals/oil/forex/indices/pre-IPO). Paid x402 ~$0.001.", "readOnly": true }
   ]
 }
