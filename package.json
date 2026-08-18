@@ -1,6 +1,7 @@
 {
   "name": "@usenami/funding-mcp",
-  "version": "0.4.0",
+  "version": "0.4.1",
+  "mcpName": "io.github.namixai/funding-mcp",
   "description": "MCP server for multi-venue perpetual funding-rate data & cross-exchange funding arbitrage across 20+ exchanges (incl. HIP-3 sub-DEXes). Free screener + paid x402 endpoints.",
   "type": "module",
   "bin": {
